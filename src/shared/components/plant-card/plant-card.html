@@ -1,16 +1,52 @@
 <p-card>
-  <img [src]="plant.imageUrl" alt="{{ plant.name }}" />
-  <h3>{{ plant.name }}</h3>
-  <p>{{ plant.species }}</p>
+  <!-- Image de la plante -->
   <div>
-    <small
-      >💧 {{ plant.lastMeasurement.soilMoisture.value
-      }}{{ plant.lastMeasurement.soilMoisture.unit }}</small
-    >
-    <small
-      >🌡 {{ plant.lastMeasurement.temperature.value
-      }}{{ plant.lastMeasurement.temperature.unit }}</small
-    >
+    <img
+      [src]="plant.imageUrl || 'assets/placeholder-plant.jpg'"
+      [alt]="plant.name"
+      class="plant-card-image"
+    />
   </div>
-  <p-button icon="pi pi-view" (click)="onClick()"></p-button>
+
+  <div>
+    <!-- Contenu principal -->
+    <div class="plant-card-content">
+      <h3>{{ plant.name }}</h3>
+      <p class="species">{{ plant.species }}</p>
+
+      <!-- Mesures actuelles -->
+      <div class="plant-measurements">
+        <div class="measurement-item">
+          <span class="icon">💧</span>
+          <span class="label">Humidité</span>
+          <span class="value">
+            {{ plant.lastMeasurement.soilMoisture.value
+            }}{{ plant.lastMeasurement.soilMoisture.unit }}
+          </span>
+        </div>
+
+        <div class="measurement-item">
+          <span class="icon">🌡️</span>
+          <span class="label">Temp.</span>
+          <span class="value">
+            {{ plant.lastMeasurement.temperature.value
+            }}{{ plant.lastMeasurement.temperature.unit }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bouton d'action -->
+  <div>
+    <div class="plant-card-actions">
+      <p-button
+        label="Voir les détails"
+        icon="pi pi-eye"
+        (onClick)="onClick()"
+        styleClass="p-button-sm"
+      >
+      </p-button>
+    </div>
+  </div>
 </p-card>

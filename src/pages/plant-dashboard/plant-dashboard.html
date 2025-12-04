@@ -1,15 +1,19 @@
 <div class="dashboard-container">
-  <h1>Tableau de bord des plantes</h1>
+  <header class="dashboard-header">
+    <h1>🌱 Tableau de bord des plantes</h1>
+    <p class="subtitle">Surveillance des capteurs Arduino</p>
+  </header>
 
-  <app-plant-list
-    [plants]="plants"
-    (plantSelected)="onPlantSelected($event)"
-  ></app-plant-list>
+  <!-- Vue liste des plantes -->
+  @if (!selectedPlantId) {
+  <app-plant-list [plants]="plants" (plantSelected)="onPlantSelected($event)">
+  </app-plant-list>
+  }
 
+  <!-- Vue détail d'une plante -->
   @if (selectedPlantId) {
-  <div class="plant-detail">
-    <p>Plante sélectionnée : {{ selectedPlantId }}</p>
-    <!-- TODO: Ajouter le composant de détail ici -->
-  </div>
+  <app-plant-detail [plantId]="selectedPlantId" (close)="onCloseDetail()">
+  </app-plant-detail>
   }
 </div>
+

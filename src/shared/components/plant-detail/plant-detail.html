@@ -1,1 +1,185 @@
-<p>plant-detail works!</p>
+<div class="plant-detail-container">
+  @if (plant) {
+  <!-- En-tête avec infos de la plante -->
+  <div class="plant-header">
+    <button class="btn-back" (click)="onClose()">
+      <i class="pi pi-arrow-left"></i> Retour à la liste
+    </button>
+
+    <div class="plant-info">
+      <img
+        [src]="plant.imageUrl || 'assets/placeholder-plant.jpg'"
+        alt="{{ plant.name }}"
+        class="plant-image"
+      />
+      <div class="plant-meta">
+        <h1>{{ plant.name }}</h1>
+        <p class="species">{{ plant.species }}</p>
+        <p class="plant-id">ID: {{ plant.id }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dernière mesure (vue d'ensemble) -->
+  <div class="current-status">
+    <h2>📊 État actuel</h2>
+    <div class="status-grid">
+      <div class="status-card">
+        <span class="icon">💧</span>
+        <div class="status-info">
+          <p class="label">Humidité du sol</p>
+          <p class="value">
+            {{ plant.lastMeasurement.soilMoisture.value
+            }}{{ plant.lastMeasurement.soilMoisture.unit }}
+          </p>
+          <span class="badge">
+            {{ plant.lastMeasurement.soilMoisture.status }}
+          </span>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <span class="icon">🌡️</span>
+        <div class="status-info">
+          <p class="label">Température</p>
+          <p class="value">
+            {{ plant.lastMeasurement.temperature.value
+            }}{{ plant.lastMeasurement.temperature.unit }}
+          </p>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <span class="icon">💨</span>
+        <div class="status-info">
+          <p class="label">Humidité air</p>
+          <p class="value">
+            {{ plant.lastMeasurement.humidity.value
+            }}{{ plant.lastMeasurement.humidity.unit }}
+          </p>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <span class="icon">☀️</span>
+        <div class="status-info">
+          <p class="label">Luminosité</p>
+          <p class="value">
+            {{ plant.lastMeasurement.light.value }}
+            {{ plant.lastMeasurement.light.unit }}
+          </p>
+          <span class="badge">
+            {{ plant.lastMeasurement.light.status }}
+          </span>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <span class="icon">🔋</span>
+        <div class="status-info">
+          <p class="label">Batterie</p>
+          <p class="value">
+            {{ plant.lastMeasurement.battery.value
+            }}{{ plant.lastMeasurement.battery.unit }}
+          </p>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <span class="icon">💦</span>
+        <div class="status-info">
+          <p class="label">Pompe</p>
+          <p class="value">
+            {{
+              plant.lastMeasurement.waterPump.isActive ? "Active" : "Inactive"
+            }}
+          </p>
+          <span class="badge">
+            Mode
+            {{ plant.lastMeasurement.waterPump.autoMode ? "Auto" : "Manuel" }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historique des mesures -->
+  <div class="measurement-history">
+    <h2>📈 Historique des mesures</h2>
+
+    @if (measurements.length > 0) {
+    <div class="history-list">
+      @for (measurement of measurements; track measurement.timestamp) {
+      <div class="measurement-card">
+        <div class="measurement-header">
+          <h3>{{ formatDate(measurement.timestamp) }}</h3>
+        </div>
+
+        <div class="measurement-grid">
+          <div class="measurement-item">
+            <span class="label">💧 Humidité sol</span>
+            <span class="value">
+              {{ measurement.soilMoisture.value
+              }}{{ measurement.soilMoisture.unit }}
+              <span class="badge small">
+                {{ measurement.soilMoisture.status }}
+              </span>
+            </span>
+          </div>
+
+          <div class="measurement-item">
+            <span class="label">🌡️ Température</span>
+            <span class="value"
+              >{{ measurement.temperature.value
+              }}{{ measurement.temperature.unit }}</span
+            >
+          </div>
+
+          <div class="measurement-item">
+            <span class="label">💨 Humidité air</span>
+            <span class="value"
+              >{{ measurement.humidity.value
+              }}{{ measurement.humidity.unit }}</span
+            >
+          </div>
+
+          <div class="measurement-item">
+            <span class="label">☀️ Luminosité</span>
+            <span class="value">
+              {{ measurement.light.value }} {{ measurement.light.unit }}
+              <span class="badge small">
+                {{ measurement.light.status }}
+              </span>
+            </span>
+          </div>
+
+          <div class="measurement-item">
+            <span class="label">🔋 Batterie</span>
+            <span class="value"
+              >{{ measurement.battery.value
+              }}{{ measurement.battery.unit }}</span
+            >
+          </div>
+
+          <div class="measurement-item">
+            <span class="label">💦 Pompe</span>
+            <span class="value">
+              {{ measurement.waterPump.isActive ? "✅ Active" : "⭕ Inactive" }}
+              ({{ measurement.waterPump.autoMode ? "Auto" : "Manuel" }})
+            </span>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <p class="no-data">Aucune mesure disponible pour cette plante</p>
+    }
+  </div>
+  } @else {
+  <div class="error-message">
+    <p>❌ Plante non trouvée</p>
+    <button class="btn-back" (click)="onClose()">Retour à la liste</button>
+  </div>
+  }
+</div>
