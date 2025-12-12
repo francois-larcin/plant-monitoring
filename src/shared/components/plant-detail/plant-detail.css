@@ -1,12 +1,15 @@
-.plant-detail-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-/* En-tête */
-.plant-header {
-  margin-bottom: 30px;
+.badge.small {
+  font-size: 10px;
+  padding: 2px 6px;
 }
 
 .btn-back {
@@ -27,41 +30,6 @@
   background: #e0e0e0;
 }
 
-.plant-info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.plant-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 12px;
-  object-fit: cover;
-}
-
-.plant-meta h1 {
-  margin: 0 0 8px 0;
-  color: #2c3e50;
-  font-size: 28px;
-}
-
-.plant-meta .species {
-  font-style: italic;
-  color: #7f8c8d;
-  margin: 0 0 4px 0;
-}
-
-.plant-meta .plant-id {
-  font-size: 12px;
-  color: #95a5a6;
-  margin: 0;
-}
-
 /* État actuel */
 .current-status {
   background: white;
@@ -77,76 +45,37 @@
   font-size: 20px;
   margin-bottom: 20px;
 }
-
-.status-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
+.error-message {
+  text-align: center;
+  padding: 60px 20px;
 }
 
-.status-card {
+.error-message p {
+  font-size: 18px;
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+.history-list {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 16px;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 10px;
-  border: 1px solid #e9ecef;
-}
-
-.status-card .icon {
-  font-size: 32px;
-}
-
-.status-info {
-  flex: 1;
-}
-
-.status-info .label {
-  font-size: 12px;
-  color: #6c757d;
-  margin: 0 0 4px 0;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.status-info .value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #2c3e50;
-  margin: 0 0 4px 0;
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.badge.small {
-  font-size: 10px;
-  padding: 2px 6px;
-}
-
-.status-good {
-  background: #d4edda;
-  color: #155724;
-}
-
-.status-medium {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.status-warning {
-  background: #f8d7da;
-  color: #721c24;
 }
 
 /* Historique */
+.measurement-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #e9ecef;
+}
+
+.measurement-header h3 {
+  margin: 0 0 12px 0;
+  color: #495057;
+  font-size: 16px;
+}
+
 .measurement-history {
   background: white;
   padding: 24px;
@@ -159,25 +88,6 @@
   color: #2c3e50;
   font-size: 20px;
   margin-bottom: 20px;
-}
-
-.history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.measurement-card {
-  background: #f8f9fa;
-  border-radius: 10px;
-  padding: 16px;
-  border: 1px solid #e9ecef;
-}
-
-.measurement-header h3 {
-  margin: 0 0 12px 0;
-  color: #495057;
-  font-size: 16px;
 }
 
 .measurement-grid {
@@ -221,15 +131,104 @@
   font-style: italic;
 }
 
-.error-message {
-  text-align: center;
-  padding: 60px 20px;
+.plant-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.error-message p {
-  font-size: 18px;
-  color: #dc3545;
-  margin-bottom: 20px;
+/* En-tête */
+.plant-header {
+  margin-bottom: 30px;
+}
+
+.plant-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.plant-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plant-meta h1 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+.plant-meta .species {
+  font-style: italic;
+  color: #7f8c8d;
+  margin: 0 0 4px 0;
+}
+
+.plant-meta .plant-id {
+  font-size: 12px;
+  color: #95a5a6;
+  margin: 0;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.status-good {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-card .icon {
+  font-size: 32px;
+}
+
+.status-info {
+  flex: 1;
+}
+
+.status-info .label {
+  font-size: 12px;
+  color: #6c757d;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.status-info .value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 0 0 4px 0;
+}
+
+.status-medium {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-warning {
+  background: #f8d7da;
+  color: #721c24;
 }
 
 /* Responsive */

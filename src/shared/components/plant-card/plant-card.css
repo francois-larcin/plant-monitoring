@@ -4,44 +4,32 @@
   height: 100%;
 }
 
-p-card {
-  height: 100%;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Badge de statut */
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Effet hover sur toute la carte */
-p-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+.status-badge.good {
+  color: #28a745;
+  border: 2px solid #28a745;
 }
 
-/* Override du style PrimeNG Card */
-::ng-deep .p-card {
-  height: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 1px solid #e9ecef;
+.status-badge.warning {
+  color: #ffc107;
+  border: 2px solid #ffc107;
 }
 
-::ng-deep .p-card:hover {
-  border-color: #4caf50;
-}
-
-::ng-deep .p-card-body {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-::ng-deep .p-card-content {
-  padding: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.status-badge.danger {
+  color: #dc3545;
+  border: 2px solid #dc3545;
 }
 
 /* Image de la plante */
@@ -133,6 +121,38 @@ p-card:hover {
   background: #f8f9fa;
 }
 
+p-card {
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Override du style PrimeNG Card */
+::ng-deep .p-card {
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+::ng-deep .p-card:hover {
+  border-color: #4caf50;
+}
+
+::ng-deep .p-card-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+::ng-deep .p-card-content {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 ::ng-deep .p-button {
   width: 100%;
   justify-content: center;
@@ -145,49 +165,6 @@ p-card:hover {
   background: #45a049;
   border-color: #45a049;
   transform: scale(1.02);
-}
-
-/* Badge de statut */
-.status-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.status-badge.good {
-  color: #28a745;
-  border: 2px solid #28a745;
-}
-
-.status-badge.warning {
-  color: #ffc107;
-  border: 2px solid #ffc107;
-}
-
-.status-badge.danger {
-  color: #dc3545;
-  border: 2px solid #dc3545;
-}
-
-/* Animation des icônes */
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-.measurement-item .icon {
-  animation: pulse 2s ease-in-out infinite;
 }
 
 /* Responsive */
