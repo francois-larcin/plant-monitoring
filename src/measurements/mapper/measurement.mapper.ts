@@ -11,7 +11,10 @@ export class MeasurementMapper {
 
       soilMoisture: {
         value: measurement.soilMoisture.value,
-        unit: measurement.soilMoisture.unit,
+        unit:
+          measurement.soilMoisture.unit === 'raw'
+            ? '%'
+            : measurement.soilMoisture.unit,
         status: this.calculateSoilMoistureStatus(
           measurement.soilMoisture.value,
         ),
@@ -24,12 +27,13 @@ export class MeasurementMapper {
 
       humidity: {
         value: measurement.humidity.value,
-        unit: measurement.humidity.unit,
+        unit:
+          measurement.humidity.unit === 'raw' ? '%' : measurement.humidity.unit,
       },
 
       light: {
         value: measurement.light.value,
-        unit: measurement.light.unit,
+        unit: measurement.light.unit === 'raw' ? 'lux' : measurement.light.unit,
         status: this.calculateLightStatus(measurement.light.value),
       },
 
