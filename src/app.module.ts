@@ -6,7 +6,7 @@ import { MeasurementsModule } from './measurements/measurements.module';
 @Module({
   imports: [
     //? MongoDB connection on local machine
-    MongooseModule.forRoot('mongodb://localhost:27017/plant)monitoring'),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/plant-monitoring'),
     MeasurementsModule,
   ],
 })
