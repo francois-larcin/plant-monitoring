@@ -8,7 +8,7 @@ async function bootstrap() {
 
   //? ===== CORS / Allows Angular to communicate with backend
   app.enableCors({
-    origin: 'http/localhost:4200', //frontend URL
+    origin: 'http//localhost:4200', //frontend URL
     credentials: true, // Allows cookies/auth
   });
 
