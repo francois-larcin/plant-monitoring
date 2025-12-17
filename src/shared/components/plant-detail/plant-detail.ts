@@ -18,12 +18,13 @@ export class PlantDetail {
 
   plant: Plant | undefined;
   measurements: PlantMeasurement[] = [];
+  loading = false;
+  error: string | null = null;
 
   private _plantService = inject(PlantService);
 
   ngOnInit(): void {
-    this.plant = this._plantService.getById(this.plantId);
-    this.loadMeasurements();
+    this.loadPlantData();
   }
 
   onClose(): void {
@@ -38,6 +39,20 @@ export class PlantDetail {
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
+    });
+  }
+
+  public loadMeasurements(): void {
+    this._plantService.getMeasurementsByPlantId(this.plantId).subscribe({
+      next: (measurements) => {
+        this.measurements = measurements;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error loading measurements:', err);
+        this.error = "Impossible de charger l'historique des mesures";
+        this.loading = false;
+      },
     });
   }
 
@@ -67,9 +82,27 @@ export class PlantDetail {
     }
   }
 
-  public loadMeasurements(): void {
-    this.measurements = this._plantService.getMeasurementsByPlantId(
-      this.plantId
-    );
+  public refresh(): void {
+    this.loadMeasurements();
+  }
+
+  private loadPlantData(): void {
+    this.loading = true;
+    this.error = null;
+
+    //? 1) Charge the plant infos
+    this._plantService.getById(this.plantId).subscribe({
+      next: (plant) => {
+        this.plant = plant;
+      },
+      error: (err) => {
+        console.error('Error loading plant:', err);
+        this.error = 'Impossible de charger les informations de la plante';
+        this.loading = false;
+      },
+    });
+
+    //? 2) Charge measurements history
+    this.loadMeasurements();
   }
 }

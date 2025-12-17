@@ -2,10 +2,22 @@
   <header class="dashboard-header">
     <h1>Tableau de bord</h1>
     <p class="subtitle">Surveillance des capteurs reliés à une plante</p>
+
+    <button class="btn-refresh" (click)="refresh()">Rafraichir</button>
   </header>
 
+  @if (loading) {
+  <div class="loading">
+    <p>Chargement des plantes...</p>
+  </div>
+  } @if (error) {
+  <div class="error">
+    <p>{{ error }}</p>
+    <button (click)="refresh()">Réessayer</button>
+  </div>
+  }
   <!-- Vue liste des plantes -->
-  @if (!selectedPlantId) {
+  @if (!selectedPlantId && !loading && !error) {
   <app-plant-list [plants]="plants" (plantSelected)="onPlantSelected($event)">
   </app-plant-list>
   }

@@ -14,6 +14,7 @@
       <h3>{{ plant.name }}</h3>
       <p class="species">{{ plant.species }}</p>
 
+      @if (plant.lastMeasurement) {
       <!-- Mesures actuelles -->
       <div class="plant-measurements">
         <div class="measurement-item">
@@ -34,6 +35,9 @@
           </span>
         </div>
       </div>
+      } @else {
+      <p>Aucune mesure disponible</p>
+      }
     </div>
   </div>
 

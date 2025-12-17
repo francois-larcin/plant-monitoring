@@ -1,6 +1,5 @@
-import { LightStatus } from "../enums/light-status-enum";
-import { SoilMoistureStatus } from "../enums/soil-moisture-status-enum";
-
+import { LightStatus } from '../enums/light-status-enum';
+import { SoilMoistureStatus } from '../enums/soil-moisture-status-enum';
 
 export interface PlantMeasurement {
   plantId: string;
@@ -32,10 +31,5 @@ export interface PlantMeasurement {
     isActive: boolean;
     lastRun: string; // ISO 8601 format
     autoMode: boolean;
-  };
-
-  battery: {
-    value: number;
-    unit: string;
   };
 }

@@ -5,5 +5,5 @@ export interface Plant {
   name: string;
   species?: string;
   imageUrl?: string;
-  lastMeasurement: PlantMeasurement;
+  lastMeasurement?: PlantMeasurement;
 }

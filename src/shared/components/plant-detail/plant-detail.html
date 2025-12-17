@@ -1,5 +1,21 @@
 <div class="plant-detail-container">
-  @if (plant) {
+  <!-- Indicateur de chargement -->
+  @if (loading) {
+  <div class="loading">
+    <p>Chargement des données...</p>
+  </div>
+  }
+
+  <!-- Message d'erreur -->
+  @if (error) {
+  <div class="error-message">
+    <p>❌ {{ error }}</p>
+    <button class="btn-retry" (click)="refresh()">Réessayer</button>
+  </div>
+  }
+
+  <!-- Contenu principal (si pas d'erreur) -->
+  @if (plant && !loading) {
   <!-- En-tête avec infos de la plante -->
   <div class="plant-header">
     <button class="btn-back" (click)="onClose()">
@@ -20,6 +36,7 @@
     </div>
   </div>
 
+  @if (plant.lastMeasurement) {
   <!-- Dernière mesure (vue d'ensemble) -->
   <div class="current-status">
     <h2>📊 État actuel</h2>
@@ -75,17 +92,6 @@
       </div>
 
       <div class="status-card">
-        <span class="icon">🔋</span>
-        <div class="status-info">
-          <p class="label">Batterie</p>
-          <p class="value">
-            {{ plant.lastMeasurement.battery.value
-            }}{{ plant.lastMeasurement.battery.unit }}
-          </p>
-        </div>
-      </div>
-
-      <div class="status-card">
         <span class="icon">💦</span>
         <div class="status-info">
           <p class="label">Pompe</p>
@@ -102,6 +108,7 @@
       </div>
     </div>
   </div>
+  }
 
   <!-- Historique des mesures -->
   <div class="measurement-history">
@@ -151,14 +158,6 @@
                 {{ measurement.light.status }}
               </span>
             </span>
-          </div>
-
-          <div class="measurement-item">
-            <span class="label">🔋 Batterie</span>
-            <span class="value"
-              >{{ measurement.battery.value
-              }}{{ measurement.battery.unit }}</span
-            >
           </div>
 
           <div class="measurement-item">
