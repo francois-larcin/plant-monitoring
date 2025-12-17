@@ -4,9 +4,7 @@ import { Measurement } from '../schemas/measurement.schema';
 export class MeasurementMapper {
   //? Convert a MongoDB document into DTO for Angular
 
-  static toResponseDTO(
-    measurement: Measurement & { createdAt: Date },
-  ): MeasurementResponseDto {
+  static toResponseDto(measurement: Measurement): MeasurementResponseDto {
     return {
       plantId: measurement.plantId,
       timestamp: measurement.createdAt.toISOString(),
@@ -32,6 +30,7 @@ export class MeasurementMapper {
       light: {
         value: measurement.light.value,
         unit: measurement.light.unit,
+        status: this.calculateLightStatus(measurement.light.value),
       },
 
       waterPump: {
@@ -43,10 +42,10 @@ export class MeasurementMapper {
   }
 
   //* Convert several measures
-  static toReponseDtoArray(
-    measurements: (Measurement & { createdAt: Date })[],
+  static toResponseDtoArray(
+    measurements: Measurement[],
   ): MeasurementResponseDto[] {
-    return measurements.map((m) => this.toResponseDTO(m));
+    return measurements.map((m) => this.toResponseDto(m));
   }
 
   //* Logique métier

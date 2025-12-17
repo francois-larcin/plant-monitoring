@@ -21,6 +21,7 @@ export class MeasurementResponseDto {
   light: {
     value: number;
     unit: string;
+    status: string;
   };
 
   waterPump: {

@@ -44,6 +44,9 @@ export class Measurement {
     isActive: boolean;
     autoMode: boolean;
   };
+
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export const MeasurementSchema = SchemaFactory.createForClass(Measurement);
