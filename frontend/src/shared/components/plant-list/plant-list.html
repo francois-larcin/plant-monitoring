@@ -1,0 +1,10 @@
+<div class="plant-list">
+  @for (plant of plants; track plant.id) {
+  <app-plant-card
+    [plant]="plant"
+    (select)="onPlantSelect($event)"
+  ></app-plant-card>
+  } @empty {
+  <p>Aucune plante à afficher</p>
+  }
+</div>

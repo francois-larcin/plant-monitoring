@@ -1,0 +1,56 @@
+<p-card>
+  <!-- Image de la plante -->
+  <div>
+    <img
+      [src]="plant.imageUrl || 'assets/placeholder-plant.jpg'"
+      [alt]="plant.name"
+      class="plant-card-image"
+    />
+  </div>
+
+  <div>
+    <!-- Contenu principal -->
+    <div class="plant-card-content">
+      <h3>{{ plant.name }}</h3>
+      <p class="species">{{ plant.species }}</p>
+
+      @if (plant.lastMeasurement) {
+      <!-- Mesures actuelles -->
+      <div class="plant-measurements">
+        <div class="measurement-item">
+          <span class="icon">💧</span>
+          <span class="label">Humidité</span>
+          <span class="value">
+            {{ plant.lastMeasurement.soilMoisture.value
+            }}{{ plant.lastMeasurement.soilMoisture.unit }}
+          </span>
+        </div>
+
+        <div class="measurement-item">
+          <span class="icon">🌡️</span>
+          <span class="label">Temp.</span>
+          <span class="value">
+            {{ plant.lastMeasurement.temperature.value
+            }}{{ plant.lastMeasurement.temperature.unit }}
+          </span>
+        </div>
+      </div>
+      } @else {
+      <p>Aucune mesure disponible</p>
+      }
+    </div>
+  </div>
+
+  <!-- Bouton d'action -->
+  <div>
+    <div class="plant-card-actions">
+      <p-button
+        label="Voir les détails"
+        icon="pi pi-eye"
+        (onClick)="onClick()"
+        styleClass="p-button-sm"
+      >
+      </p-button>
+    </div>
+  </div>
+</p-card>
